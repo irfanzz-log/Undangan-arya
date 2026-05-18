@@ -500,7 +500,7 @@ export default function WeddingInvitation() {
                   <img src="/bca.svg" alt="" className='md:w-1/6 w-3/4' />
                 </div>
                 <p className='text-lg'>8880466420</p>
-                <p className='text-sm'>A/N M Noval Bintang Ramadhan</p>
+                <p className='text-sm'>A/N Noval Bintang Ramadhan</p>
               </div>
 
               <div className='relative my-5 text-[#505050] bg-white p-5 rounded-xl'>
@@ -508,7 +508,7 @@ export default function WeddingInvitation() {
                   <img src="/seabank.png" alt="" className='md:w-1/6 w-3/4' />
                 </div>
                 <p className='text-lg'>901116980578 </p>
-                <p className='text-sm'>A/N M Latifah Alawiyah</p>
+                <p className='text-sm'>A/N Latifah Alawiyah</p>
               </div>
             </div>
           </div>
