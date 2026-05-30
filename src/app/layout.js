@@ -1,5 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import localFont from 'next/font/local';
+import { Geist, Geist_Mono, Great_Vibes } from "next/font/google";
 import "./globals.css";
 import { title } from "framer-motion/client";
 
@@ -8,15 +7,16 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const jawaFont = localFont({
-  variable: '--font-jawa-font',
-  src: '../../public/fonts/jawa-palsu.ttf'
-})
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const greatVibes = Great_Vibes({
+  variable: '--font-great-vibes',
+  subsets: ['latin'],
+  weight: '400',
+})
 
 export const metadata = {
   metadataBase: new URL("https://wedding.solusidigitalkreatif.my.id"),
@@ -63,7 +63,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${jawaFont.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${greatVibes.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

@@ -7,6 +7,6 @@ export default function Tamu() {
     const tamu = searchParams.get('tamu');
 
     return(
-        <p className='font-jawa text-[#B18B41] md:text-5xl text-4xl my-3'>{tamu || "Tamu Undangan"}</p>
+        <p className='font-great-vibes text-[#ae8f7a] md:text-5xl text-4xl my-3'>{tamu || "Tamu Undangan"}</p>
     )
 }

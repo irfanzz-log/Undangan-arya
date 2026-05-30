@@ -5,9 +5,9 @@ import { motion } from 'framer-motion';
 import { supabase } from '@/lib/supabase';
 import { Suspense } from 'react';
 import Tamu from '@/component/tamu';
+import Countdown from '@/component/countdown';
 
 export default function WeddingInvitation() {
-  const targetDate = new Date('2026-06-06T11:00:00').getTime();
   const audioRef = useRef(null);
 
   function playAudio() {
@@ -18,29 +18,6 @@ export default function WeddingInvitation() {
 
     audioRef.current.play();
   }
-
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
-
-      setTimeLeft({
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((distance / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((distance / (1000 * 60)) % 60),
-        seconds: Math.floor((distance / 1000) % 60),
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
 
@@ -103,28 +80,39 @@ export default function WeddingInvitation() {
     }
   }
 
+  function scrollToSection(id) {
+    const element = document.getElementById(id);
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+
   return (
     <main className={`relative text-white h-screen w-full overflow-x-hidden ${isOpen ? 'overflow-y-scroll' : 'overflow-y-hidden'}`}>
-      <div className="fixed -z-1 inset-0 bg-[url(/bg.png)] bg-cover bg-no-repeat opacity-10 h-screen w-full" />
+      <div className='fixed z-100 w-full mx-10 bottom-0 -left-10 p-5 flex md:hidden'>
+        <div className={`w-full flex justify-around items-center p-5 bg-[#ae8f7a] rounded-full ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 pointer-events-none translate-y-20'} transition-all duration-500 ease-out`}>
+          <div onClick={() => scrollToSection('hero')}><img src="https://indoinvite.com/nikah/home.svg" alt="" className='w-5'/></div>
+          <div onClick={() => scrollToSection('partner')}><img src="https://indoinvite.com/nikah/people.svg" alt="" className='w-5'/></div>
+          <div onClick={() => scrollToSection('location')}><img src="https://indoinvite.com/nikah/map.svg" alt="" className='w-5'/></div>
+          <div onClick={() => scrollToSection('gallery')}><img src="https://indoinvite.com/nikah/picture.svg" alt="" className='w-5'/></div>
+        </div>
+      </div>
+      <div className="fixed -z-1 inset-0 bg-[url('https://indoinvite.com/nikah/template/pandora/pandora-classic/PC-BG.webp')] bg-cover bg-no-repeat opacity-100 h-screen w-full" />
 
       <motion.section
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className={`relative h-screen items-center justify-center text-center px-6 transition-all duration-1000 ease-out ${isOpen ? 'hidden opacity-0' : 'opacity-100 flex'}`}>
+        className={` transform-gpu relative h-screen items-center justify-center text-center px-6 transition-all duration-1000 ease-out ${isOpen ? 'hidden opacity-0' : 'opacity-100 flex'}`}>
         <div className="absolute inset-0 bg-[url('/g2.jpeg')] bg-cover bg-center brightness-50" />
 
         <div className="relative w-full z-10 flex-col items-center justify-center">
-          <div className='w-full flex justify-center my-2'>
-            <img src="/gunungan-wayang.png" alt="" className='md:w-1/6 w-1/4' />
-          </div>
+
           <p className="tracking-[0.4em] uppercase text-sm mb-4 text-neutral-300">
             Wedding Invitation
           </p>
 
-          <h1 className="text-6xl md:text-8xl font-serif mb-6 text-[#B18B41]">
-            Noval <span className="">&</span> Latifah
+          <h1 className="text-6xl md:text-8xl font-serif mb-6 text-[#FFFBF1]">
+            Arya <span className="">&</span> Riska
           </h1>
 
           <p className="text-lg text-neutral-200 mb-8">
@@ -132,14 +120,14 @@ export default function WeddingInvitation() {
           </p>
 
           <p className='text-serif text-sm  text-neutral-200 text-xs md:text-lg'>Kepada Yth. Bapak/Ibu/Saudara/i</p>
-          <Suspense fallback={<div className='font-jawa text-[#B18B41] md:text-5xl text-4xl my-3'>Loading...</div>}>
+          <Suspense fallback={<div className='font-great-vibes font-bold text-[#ae8f7a] md:text-5xl text-4xl my-3'>Loading...</div>}>
             <Tamu />
           </Suspense>
           <div className='w-full flex justify-center items-center'>
             <button
               type='button'
               onClick={() => { setIsOpen(!isOpen); playAudio(); }}
-              className='hover:scale-110 my-2 flex items-center p-2 rounded-lg bg-[#B18B41] text-white font-serif'><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-envelope-open" viewBox="0 0 16 16">
+              className='hover:scale-110 my-2 flex items-center p-2 rounded-lg bg-[#ae8f7a] text-white font-serif'><span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-envelope-open" viewBox="0 0 16 16">
                 <path d="M8.47 1.318a1 1 0 0 0-.94 0l-6 3.2A1 1 0 0 0 1 5.4v.817l5.75 3.45L8 8.917l1.25.75L15 6.217V5.4a1 1 0 0 0-.53-.882zM15 7.383l-4.778 2.867L15 13.117zm-.035 6.88L8 10.082l-6.965 4.18A1 1 0 0 0 2 15h12a1 1 0 0 0 .965-.738ZM1 13.116l4.778-2.867L1 7.383v5.734ZM7.059.435a2 2 0 0 1 1.882 0l6 3.2A2 2 0 0 1 16 5.4V14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5.4a2 2 0 0 1 1.059-1.765z" />
               </svg></span><span className='mx-2'>Buka Undangan</span></button>
           </div>
@@ -147,22 +135,20 @@ export default function WeddingInvitation() {
 
       </motion.section>
 
-      <div className=''>
+      <div id='hero' className=''>
         {/* HERO */}
         <div
           className={`relative h-screen flex items-center justify-center text-center px-6 transition-all duration-1000 ease-out ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
           <div className="absolute inset-0 bg-[url('/hero.jpeg')] bg-cover bg-center brightness-50" />
 
           <div className="relative z-10">
-            <div className='w-full flex justify-center my-2'>
-              <img src="/gunungan-wayang.png" alt="" className='w-1/4' />
-            </div>
+
             <p className="tracking-[0.4em] uppercase text-sm mb-4 text-neutral-300">
               Wedding Invitation
             </p>
 
-            <h1 className="text-6xl md:text-8xl font-serif mb-6 text-[#B18B41]">
-              Noval <span className="">&</span> Latifah
+            <h1 className="text-6xl md:text-8xl font-serif mb-6 text-[#FFFBF1]">
+              Arya <span className="">&</span> Riska
             </h1>
 
             <p className="text-lg text-neutral-200 mb-8">
@@ -176,18 +162,27 @@ export default function WeddingInvitation() {
         </div>
 
         {/* QUOTE */}
-        <motion.section
-          initial={{ opacity: 0, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-          className="py-28 px-6 bg-neutral-950/20 text-center">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-3xl md:text-5xl leading-relaxed font-serif text-[#B18B41]">
-              “Two souls with but a single thought, two hearts that beat as one.”
-            </p>
+        <div className='relative overflow-hidden'>
+          <div className='w-full flex justify-between'>
+            <img src="https://indoinvite.com/nikah/template/pandora/pandora-classic/PC-AKR.webp" alt="" className='w-40 animate-zoom [animation-delay:0s]' />
+            <img src="https://indoinvite.com/nikah/template/pandora/pandora-classic/PC-AKR.webp" alt="" className='w-40 -scale-x-100 animate-zoom [animation-delay:0.3s]' />
           </div>
-        </motion.section>
+
+          <motion.section
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className=" transform-gpu px-6 text-center"
+            id='partner'>
+            <div className="max-w-3xl mx-auto">
+              <p className='text-black text-2xl font-bold mb-5'>السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</p>
+              <p className="text-md md:text-xl leading-relaxed font-serif text-[#ae8f7a]">
+                Atas Berkah dan Rahmat Allah Subhanallahu Wa Ta'ala. Tanpa mengurangi rasa hormat. Kami mengundang Bapak/Ibu/Saudara/i serta kerabat sekalian untuk menghadiri acara pernikahan kami :”
+              </p>
+            </div>
+          </motion.section>
+        </div>
 
         {/* COUPLE */}
         <motion.section
@@ -196,15 +191,12 @@ export default function WeddingInvitation() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="py-28 px-6 "
+          className="transform-gpu pb-26 px-6 "
         >
-          <div className='relative w-full flex flex-col items-center justify-center my-10 mb-20'>
-            <div className='absolute -z-1 w-full flex justify-center my-2 opacity-40'>
-              <img src="/gunungan-wayang.png" alt="" className='md:w-1/6 w-1/2' />
-            </div>
+          <div className='relative w-full flex flex-col items-center justify-center my-10'>
             <div className='text-center'>
               <h2 className='text-[#505050] text-xl font-serif my-3'>Pasangan</h2>
-              <p className='font-jawa text-[#B18B41] text-4xl'>Pengantin</p>
+              <p className='font-great-vibes font-bold text-[#ae8f7a] text-4xl'>Pengantin</p>
             </div>
             <div className='my-5 w-full md:flex justify-center'>
               <p className='text-[#505050] font-serif text-xs text-center md:text-xl md:w-1/3'>Maha Suci Allah SWT, Yang telah menciptakan makhlukNya berpasang-pasangan.
@@ -218,23 +210,29 @@ export default function WeddingInvitation() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
               viewport={{ once: true }}
-              className="text-center">
-              <div className="w-56 h-56 mx-auto rounded-full overflow-hidden mb-8 border-4 border-[#B18B41]">
+              className="transform-gpu text-center">
+              <div className="relative w-56 h-56 mx-auto mb-8">
                 <img
-                  src="/noval.png"
+                  src="/arya.jpeg"
                   alt="Groom"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-full"
                 />
+                <div className='w-70 -left-8 z-2 top-0  absolute'>
+                  <img src="https://indoinvite.com/nikah/template/pandora/pandora-classic/PC-Bor.webp" alt="" className='w-full h-full' />
+                </div>
               </div>
 
-              <h2 className="text-4xl font-jawa text-[#B18B41] mb-3">Noval Bintang Ramadhan</h2>
+              <h2 className="text-4xl font-great-vibes font-bold text-[#ae8f7a] mb-3">Arya Wira Radja S.Kom</h2>
               <div className='w-full flex justify-center'>
                 <div className='w-3/4 p-[0.2px] rounded-xl my-2 bg-black'>
                 </div>
               </div>
-              <p className='text-[#505050] font-serif'>Putra dari</p>
+              <p className='text-[#505050] font-serif'>Anak Ketiga dari Pasangan</p>
               <p className="text-[#505050] font-serif">
-                Bapak Eko Prasetyo dan Ibu Sri Hartini
+                Bapak Racmat Fauzi (alm) & Ibu Dra.Windiarti
+              </p>
+              <p className='text-[#505050] font-serif pt-2 text-xs md:text-lg'>
+                Beralamat di Perum Royalindo,Desa.Tanjung Agung, Kelurahan.Katibung, Lampung Selatan
               </p>
             </motion.div>
 
@@ -244,67 +242,35 @@ export default function WeddingInvitation() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
               viewport={{ once: true }}
-              className="text-center">
-              <div className="w-56 h-56 mx-auto rounded-full overflow-hidden mb-8 border-4 border-[#B18B41]">
+              className="transform-gpu text-center">
+              <div className="relative w-56 h-56 mx-auto mb-8">
                 <img
-                  src="/girl.png"
+                  src="/riska.jpeg"
                   alt="Bride"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-full"
                 />
+                <div className='w-70 -left-8 z-2 top-0  absolute'>
+                  <img src="https://indoinvite.com/nikah/template/pandora/pandora-classic/PC-Bor.webp" alt="" className='w-full h-full' />
+                </div>
               </div>
 
-              <h2 className="text-4xl font-jawa text-[#B18B41] mb-3">Latifah alawiah</h2>
+              <h2 className="text-4xl font-great-vibes font-bold text-[#ae8f7a] mb-3">Riska Mailani</h2>
               <div className='w-full flex justify-center'>
                 <div className='w-3/4 p-[0.2px] rounded-xl my-2 bg-black'>
                 </div>
               </div>
-              <p className='text-[#505050] font-serif'>Putri dari</p>
+              <p className='text-[#505050] font-serif'>Anak Ketiga dari Pasangan</p>
               <p className="text-[#505050] font-serif">
-                Bapak Yana Rahman dan Ibu Sri Iimaliah
+                Bapak Riswanto & Ibu Rusmana
+              </p>
+              <p className='text-[#505050] font-serif pt-2 text-xs md:text-lg'>
+                Beralamat di Jl.Balik,Lk 2,Tanjung Gading, Kelurahan Garuntang, Bandar Lampung
               </p>
             </motion.div>
           </div>
         </motion.section>
 
-        {/* COUNTDOWN */}
-        <motion.section
-          initial={{ opacity: 0, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-          className="relative py-28 px-6 bg-[url(/countdown.jpeg)] bg-center bg-cover text-center">
-          <div className='absolute w-full h-full bg-black/40 z-10 top-0 left-0 inset-0'></div>
-          <div className='relative z-20 mb-10'>
-            <h2 className=" font-serif mb-5 text-neutral-100 text-xl">Hitung Mundur</h2>
-            <p className='font-jawa text-[#B18B41] font-bold text-5xl'>Menuju Hari Bahagia</p>
-          </div>
-
-          <div className="relative grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto z-20">
-            {[
-              { label: 'Days', value: timeLeft.days },
-              { label: 'Hours', value: timeLeft.hours },
-              { label: 'Minutes', value: timeLeft.minutes },
-              { label: 'Seconds', value: timeLeft.seconds },
-            ].map((item) => (
-              <motion.div
-                initial={{ opacity: 0, y: 100 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1 }}
-                viewport={{ once: true }}
-                key={item.label}
-                className="rounded-3xl p-10 border border-neutral-100 backdrop-blur-[1px]"
-              >
-                <h3 className="text-5xl font-bold text-[#B18B41] mb-2">
-                  {item.value}
-                </h3>
-
-                <p className="text-neutral-100 uppercase tracking-widest text-sm">
-                  {item.label}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
+        <Countdown targetDate={'2026-06-06T11:00:00'} />
 
         {/* EVENT */}
         <motion.section
@@ -316,7 +282,7 @@ export default function WeddingInvitation() {
           <div className="max-w-5xl mx-auto text-center">
             <div className='w-full mb-10'>
               <h2 className="font-serif text-xl my-2 text-neutral-100">Waktu & Tempat</h2>
-              <p className='font-jawa text-[#B18B41] text-4xl'>Pernikahan</p>
+              <p className='font-great-vibes font-bold text-[#ae8f7a] text-4xl'>Pernikahan</p>
               <p className='font-serif text-neutral-100 md:text-lg text-sm'>Pertemuan adalah permulaan, tetap bersama adalah perkembangan, bekerja sama adalah keberhasilan.</p>
             </div>
 
@@ -326,22 +292,22 @@ export default function WeddingInvitation() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
                 viewport={{ once: true }}
-                className="bg-black rounded-3xl p-10 border border-[#B18B41]">
+                className="bg-black rounded-3xl p-10 border border-[#ae8f7a]">
                 <div className='w-full flex justify-center my-3'>
                   <img src="/dovewhite.png" alt="" className='w-1/2' />
                 </div>
-                <h3 className="text-3xl mb-6 text-[#B18B41] font-jawa">
+                <h3 className="text-3xl mb-6 text-[#ae8f7a] font-great-vibes font-bold">
                   Akad Nikah
                 </h3>
 
                 <p className="text-neutral-200 font-serif leading-8">
                   Saturday
-                  <br /> <span className='text-5xl font-bold text-[#B18B41]'>06</span>
-                  <br /> <span className='text-[#B18B41]'>Juni 2026</span>
+                  <br /> <span className='text-5xl font-bold text-[#ae8f7a]'>06</span>
+                  <br /> <span className='text-[#ae8f7a]'>Juni 2026</span>
                   <br />
-                  11.00 WIB - 12.00 WIB
+                  08.00 WIB - s/d selesai
                   <br />
-                  Balaraja
+                  Jl.Balik,Lk 2,Tanjung Gading, Kelurahan Garuntang, Bandar Lampung
                 </p>
               </motion.div>
 
@@ -350,31 +316,31 @@ export default function WeddingInvitation() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
                 viewport={{ once: true }}
-                className="bg-black rounded-3xl p-10 border border-[#B18B41] ">
+                className="bg-black rounded-3xl p-10 border border-[#ae8f7a] ">
                 <div className='w-full flex justify-center my-3'>
                   <img src="/bouquetwhite.png" alt="" className='w-1/3' />
                 </div>
-                <h3 className="text-3xl mb-6 text-[#B18B41] font-jawa">
+                <h3 className="text-3xl mb-6 text-[#ae8f7a] font-great-vibes font-bold">
                   Reception
                 </h3>
 
                 <p className="text-neutral-200 font-serif leading-8">
                   Saturday
-                  <br /> <span className='text-5xl font-bold text-[#B18B41]'>06</span>
-                  <br /> <span className='text-[#B18B41]'>Juni 2026</span>
+                  <br /> <span className='text-5xl font-bold text-[#ae8f7a]'>06</span>
+                  <br /> <span className='text-[#ae8f7a]'>Juni 2026</span>
                   <br />
-                  12.00 WIB s/d Selesai
+                  08.00 WIB s/d Selesai
                   <br />
-                  Balaraja
+                  Jl.Balik,Lk 2,Tanjung Gading, Kelurahan Garuntang, Bandar Lampung
                 </p>
               </motion.div>
             </div>
 
-            <div className='w-full my-10'>
+            <div id='location' className='w-full my-10'>
               <div className='w-full mb-10'>
                 <h2 className="font-serif text-xl my-2 text-neutral-100">Lokasi</h2>
-                <p className='font-jawa text-[#B18B41] text-4xl my-3'>Balaraja</p>
-                <p className='font-serif text-neutral-100 text-sm'>Saga, Kec. Balaraja, Kabupaten Tangerang, Banten 15610</p>
+                <p className='font-serif font-bold text-[#ae8f7a] text-4xl my-3'>Jl.Balik,Lk 2,Tanjung Gading</p>
+                <p className='font-serif text-neutral-100 text-sm'>Kelurahan Garuntang, Bandar Lampung</p>
               </div>
               <motion.div
                 initial={{ opacity: 0, y: 100 }}
@@ -393,103 +359,60 @@ export default function WeddingInvitation() {
           </div>
         </motion.section>
 
-        {/* Story */}
-        <motion.section className="relative py-28 px-6 bg-center bg-cover text-center">
-          <div className='absolute w-full h-full bg-black/70 z-10 top-0 left-0 inset-0'></div>
-          <div className='relative z-20 mb-10'>
-            <h2 className=" font-serif mb-5 text-neutral-100 text-xl">Sebuah Kisah</h2>
-            <p className='font-jawa text-[#B18B41] font-bold text-5xl'>Perjalanan Kami</p>
-            <p className='font-serif text-neutral-100 md:text-lg text-sm mt-5'>Perjalanan yang tak terlupakan, dan perjalanan yang mengubah tujuan hidup kami</p>
-          </div>
-
-          <div className="relative z-20">
-            <div className='w-full md:flex-row flex-col'>
-              <motion.div
-                initial={{ opacity: 0, y: 100 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1 }}
-                viewport={{ once: true }}
-                className='my-5 w-full md:flex justify-center'>
-                <div className='md:w-1/4'>
-                  <h2 className='font-jawa text-[#B18B41] font-bold text-3xl'>Awal Bertemu</h2>
-                  <p>Pada tahun 2021, kami dipertemukan di sebuah tempat sederhana yang menjadi awal dari semua cerita. Dari ruang latihan itulah kami belajar banyak hal—disiplin, kebersamaan, dan perlahan saling mengenal hingga tumbuh rasa yang tidak kami duga.
-                    Hingga akhirnya, pada 1 Mei 2022, kami resmi berjalan bersama sebagai sepasang kekasih. Sejak saat itu, langkah kami terus sejalan, menguatkan satu sama lain hingga tiba pada keputusan untuk membangun masa depan bersama.</p>
-                  <div className='overflow-hidden'><img src="/first-meet.jpeg" alt="" className='my-10 transition-all duration-1000 ease-out hover:scale-110 rounded-lg' /></div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 100 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1 }}
-                viewport={{ once: true }}
-                className='my-5 w-full md:flex justify-center'>
-                <div className='md:w-1/4'>
-                  <h2 className='font-jawa text-[#B18B41] font-bold text-3xl'>Lamaran</h2>
-                  <p>Hingga pada 30 November 2025, dengan penuh keyakinan dan doa, kami mengikat janji lamaran sebagai langkah awal menuju masa depan yang ingin kami bangun bersama. Dan kini, kami melangkah pada hari yang lebih bahagia, menyatukan cinta yang tumbuh dari pertemuan sederhana menjadi ikatan yang diridhai. </p>
-                  <div className='overflow-hidden'><img src="/lamaran.jpeg" alt="" className='my-10 transition-all duration-1000 ease-out hover:scale-110 rounded-lg' /></div>
-                  <p>"Dan di antara tanda-tanda kekuasaan-Nya diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri supaya kamu dapat ketenangan hati dan dijadikannya kasih sayang di antara kamu. Sesungguhnya yang demikian menjadi tanda-tanda kebesaran-Nya bagi orang-orang yang berpikir." <br /> <span>•⁠  ⁠Q.S. Ar-Rum: 21</span></p>
-                </div></motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 100 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1 }}
-                viewport={{ once: true }}
-                className='my-5 w-full md:flex justify-center'>
-                <div className='md:w-1/4'>
-                  <h2 className='font-jawa text-[#B18B41] font-bold text-3xl'>Menikah</h2>
-                  <p>Dan kini, cinta itu akhirnya berlabuh pada hari yang kami tunggu-tunggu, jatuh pada tanggal 6 Juni 2026 (06–06–2026), sebagai momen suci kami mengikat janji pernikahan.</p>
-                </div></motion.div>
-            </div>
-          </div>
-        </motion.section>
-
         {/* GALLERY */}
-        <motion.section
-          initial={{ opacity: 0, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-          className="py-28 px-2">
-          <div className="max-w-6xl mx-auto">
-            <div className='w-full mb-20 text-center'>
-              <h2 className="font-serif text-xl my-2 text-[#505050]">Moment</h2>
-              <p className='font-jawa text-[#B18B41] text-4xl'>Bahagia Kami</p>
-              <p className='font-serif text-[#505050] md:text-lg text-sm mt-5'>Pertemuan adalah permulaan, tetap bersama adalah perkembangan, bekerja sama adalah keberhasilan.</p>
-            </div>
-
-            <div className="grid md:grid-cols-3 grid-cols-2 gap-1">
-              {['hero.jpeg', 'g1.jpeg', 'g2.jpeg', 'g3.jpeg', 'g4.jpeg', 'g5.jpeg'].map((img) => (
-                <motion.div
-                  initial={{ opacity: 0, y: 100 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1 }}
-                  viewport={{ once: true }}
-                  key={img}
-                  className="overflow-hidden w-full rounded-lg"
-                >
-                  <img
-                    src={`/${img}`}
-                    alt="Gallery"
-                    className="w-full h-full object-cover hover:scale-110 transition duration-700"
-                  />
-                </motion.div>
-              ))}
-            </div>
+        <div className='relative'>
+          <div className='absolute z-20 left-0 bottom-0 w-full flex justify-between'>
+            <img src="https://indoinvite.com/nikah/template/pandora/pandora-classic/PC-AKR.webp" alt="" className='w-40 animate-zoom -scale-y-100 [animation-delay:0s]' />
+            <img src="https://indoinvite.com/nikah/template/pandora/pandora-classic/PC-AKR.webp" alt="" className='w-40 -scale-x-100 -scale-y-100 animate-zoom [animation-delay:0.3s]' />
           </div>
-        </motion.section>
+          <motion.section
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="py-28 px-2"
+            id='gallery'>
+            <div className="max-w-6xl mx-auto">
+              <div className='w-full mb-20 text-center'>
+                <h2 className="font-serif text-xl my-2 text-[#505050]">Moment</h2>
+                <p className='font-great-vibes font-bold text-[#ae8f7a] text-4xl'>Bahagia Kami</p>
+                <p className='font-serif text-[#505050] md:text-lg text-sm mt-5'>Pertemuan adalah permulaan, tetap bersama adalah perkembangan, bekerja sama adalah keberhasilan.</p>
+              </div>
+
+              <div className="grid md:grid-cols-3 grid-cols-2 gap-1">
+                {['hero.jpeg', 'g1.jpeg', 'g2.jpeg', 'g3.jpeg', 'g4.jpeg', 'g5.jpeg'].map((img) => (
+                  <motion.div
+                    initial={{ opacity: 0, y: 100 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1 }}
+                    viewport={{ once: true }}
+                    key={img}
+                    className="overflow-hidden w-full rounded-lg"
+                  >
+                    <img
+                      src={`/${img}`}
+                      alt="Gallery"
+                      className="w-full h-full object-cover hover:scale-110 transition duration-700"
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.section>
+        </div>
 
         {/* Gift */}
-        <motion.section
-          initial={{ opacity: 0, y: 100 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
+        <section
           className="relative py-28 px-6 bg-center bg-cover text-center">
           <div className='absolute w-full h-full bg-black/70 z-10 top-0 left-0 inset-0'></div>
-          <div className='relative z-20 mb-10'>
-            <p className='font-jawa text-[#B18B41] font-bold text-5xl'>Amplop Digital</p>
+          <motion.div
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="relative z-20 max-w-5xl mx-auto">
+            <div className='relative z-20 mb-10'>
+            <p className='font-great-vibes font-bold text-[#ae8f7a] font-bold text-5xl'>Amplop Digital</p>
             <p className='font-serif text-neutral-100 md:text-lg text-sm mt-5'>Doa restu Anda merupakan hadiah terindah bagi kami. Namun apabila memberi adalah bentuk kasih, Anda dapat mengirimkan tanda kasih melalui amplop digital berikut.</p>
           </div>
 
@@ -497,22 +420,23 @@ export default function WeddingInvitation() {
             <div className='w-full md:flex-row flex-col'>
               <div className='relative my-5 text-[#505050] bg-white p-5 rounded-xl'>
                 <div className='w-full flex justify-center my-2'>
-                  <img src="/bca.svg" alt="" className='md:w-1/6 w-3/4' />
+                  <img src="/mandiri.png" alt="" className='md:w-1/6 w-3/4' />
                 </div>
-                <p className='text-lg'>8880466420</p>
-                <p className='text-sm'>A/N Noval Bintang Ramadhan</p>
+                <p className='text-lg'>1140026390594</p>
+                <p className='text-sm'>A/N Arya wira radja</p>
               </div>
 
               <div className='relative my-5 text-[#505050] bg-white p-5 rounded-xl'>
                 <div className='w-full flex justify-center my-2'>
-                  <img src="/seabank.png" alt="" className='md:w-1/6 w-3/4' />
+                  <img src="/bca.svg" alt="" className='md:w-1/6 w-3/4' />
                 </div>
-                <p className='text-lg'>901116980578 </p>
-                <p className='text-sm'>A/N Latifah Alawiyah</p>
+                <p className='text-lg'>0231309763 </p>
+                <p className='text-sm'>A/N Riska mailani</p>
               </div>
             </div>
           </div>
-        </motion.section>
+          </motion.div>
+        </section>
 
         {/* RSVP */}
         <motion.section
@@ -524,8 +448,8 @@ export default function WeddingInvitation() {
           <div className="max-w-3xl mx-auto text-center">
             <div className='relative z-20 mb-10'>
               <h2 className="font-serif text-xl my-2 text-neutral-100">Doa & Ucapan</h2>
-              <p className='font-jawa text-[#B18B41] text-4xl'>Untuk Kami Berdua</p>
-              <p className='font-serif text-neutral-100 md:text-lg text-sm'>Merupakan suatu kehormatan dan kebahagiaan bagi kami, apabila Bapak/ Ibu/ Saudara/ i berkenan hadir, untuk memberikan do'a restu kepada kami.</p>
+              <p className='font-great-vibes font-bold text-[#ae8f7a] text-4xl'>Untuk Kami Berdua</p>
+              <p className='font-serif text-neutral-100 md:text-lg text-sm'>Merupakan suatu kehormatan dan kebahagiaan bagi kami sekeluarga, apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu. Atas kehadiran dan doa restunya, kami mengucapkan terima kasih.</p>
             </div>
 
             <div className="relative flex justify-center">
@@ -554,13 +478,13 @@ export default function WeddingInvitation() {
                   </div>
                 </div>
                 {isWarning && <p className='text-red-700'>Harap Lengkapi form!</p>}
-                <button className='hover:scale-110 transition-all duration-400 ease-out w-1/2 bg-[#B18B41] text-white p-2 rounded-md my-1'>Kirim Ucapan</button>
+                <button className='hover:scale-110 transition-all duration-400 ease-out w-1/2 bg-[#ae8f7a] text-white p-2 rounded-md my-1'>Kirim Ucapan</button>
               </form>
             </div>
 
             <div className='relative w-full my-1'>
               <div className='w-full flex flex-col bg-white rounded-md overflow-hidden'>
-                <div className='text-left font-serif p-1 w-full bg-[#B18B41]'>
+                <div className='text-left font-serif p-1 w-full bg-[#ae8f7a]'>
                   <p className='flex items-center'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chat-left-text" viewBox="0 0 16 16">
                     <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
                     <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
@@ -571,14 +495,14 @@ export default function WeddingInvitation() {
                   return (
                     <div key={idx} className='w-full flex text-left text-black p-2 my-2'>
                       <div className='w-1/5 md:w-1/8'>
-                        <div className='w-15 h-15 flex items-center justify-center border-[0.5px] border-[#b18b41] rounded-full overflow-hidden'>
+                        <div className='w-15 h-15 flex items-center justify-center border-[0.5px] border-[#ae8f7a] rounded-full overflow-hidden'>
                           <p>{name}</p>
                         </div>
                       </div>
                       <div className='w-full p-2'>
                         <div className='w-full flex items-center'>
                           <p className='font-bold'>{data.name}</p>
-                          <p className='mx-3 p-1 px-2 text-xs text-white bg-[#B18B41] rounded-lg'>{data.status}</p>
+                          <p className='mx-3 p-1 px-2 text-xs text-white bg-[#ae8f7a] rounded-lg'>{data.status}</p>
                         </div>
                         <div>
                           <p className='text-sm'>{data.message}</p>
