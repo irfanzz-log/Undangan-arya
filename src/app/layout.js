@@ -55,7 +55,7 @@ export const metadata = {
     description:
       "Undangan pernikahan Arya & Riska.",
     images: [
-      "https://wedding.solusidigitalkreatif.my.id/thumbnail.jpeg",
+      "https://arya-invitation.vercel.app/thumbnail.jpeg",
     ],
   },
 };
