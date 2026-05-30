@@ -51,9 +51,9 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Noval & Latifah Wedding Invitation",
+    title: "Aryya & Riska Wedding Invitation",
     description:
-      "Undangan pernikahan Noval & Latifah.",
+      "Undangan pernikahan Aryya & Riska.",
     images: [
       "https://wedding.solusidigitalkreatif.my.id/thumbnail.jpeg",
     ],
