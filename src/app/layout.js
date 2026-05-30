@@ -19,7 +19,7 @@ const greatVibes = Great_Vibes({
 })
 
 export const metadata = {
-  metadataBase: new URL("https://wedding.solusidigitalkreatif.my.id"),
+  metadataBase: new URL("https://arya-invitation.vercel.app/"),
 
   title: "Arya & Riska Wedding Invitation",
 
@@ -32,13 +32,13 @@ export const metadata = {
     description:
       "Undangan pernikahan Arya & Riska. Dengan penuh kebahagiaan kami mengundang Anda untuk hadir di hari istimewa kami.",
 
-    url: "https://wedding.solusidigitalkreatif.my.id",
+    url: "https://arya-invitation.vercel.app/thumbnail.jpeg",
 
     siteName: "Wedding Invitation",
 
     images: [
       {
-        url: "https://wedding.solusidigitalkreatif.my.id/thumbnail.jpeg",
+        url: "https://arya-invitation.vercel.app/thumbnail.jpeg",
         width: 1200,
         height: 630,
         alt: "Arya & Riska Wedding",
