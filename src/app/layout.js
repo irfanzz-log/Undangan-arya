@@ -21,16 +21,16 @@ const greatVibes = Great_Vibes({
 export const metadata = {
   metadataBase: new URL("https://wedding.solusidigitalkreatif.my.id"),
 
-  title: "Noval & Latifah Wedding Invitation",
+  title: "Arya & Riska Wedding Invitation",
 
   description:
-    "Undangan pernikahan Noval & Latifah. Dengan penuh kebahagiaan kami mengundang Anda untuk hadir di hari istimewa kami.",
+    "Undangan pernikahan Arya & Riska. Dengan penuh kebahagiaan kami mengundang Anda untuk hadir di hari istimewa kami.",
 
   openGraph: {
-    title: "Noval & Latifah Wedding Invitation",
+    title: "Arya & Riska Wedding Invitation",
 
     description:
-      "Undangan pernikahan Noval & Latifah. Dengan penuh kebahagiaan kami mengundang Anda untuk hadir di hari istimewa kami.",
+      "Undangan pernikahan Arya & Riska. Dengan penuh kebahagiaan kami mengundang Anda untuk hadir di hari istimewa kami.",
 
     url: "https://wedding.solusidigitalkreatif.my.id",
 
@@ -41,7 +41,7 @@ export const metadata = {
         url: "https://wedding.solusidigitalkreatif.my.id/thumbnail.jpeg",
         width: 1200,
         height: 630,
-        alt: "Noval & Latifah Wedding",
+        alt: "Arya & Riska Wedding",
       },
     ],
 
@@ -51,9 +51,9 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Aryya & Riska Wedding Invitation",
+    title: "Arya & Riska Wedding Invitation",
     description:
-      "Undangan pernikahan Aryya & Riska.",
+      "Undangan pernikahan Arya & Riska.",
     images: [
       "https://wedding.solusidigitalkreatif.my.id/thumbnail.jpeg",
     ],
