@@ -307,7 +307,7 @@ export default function WeddingInvitation() {
                   <br />
                   08.00 WIB - s/d selesai
                   <br />
-                  Jl.Balik,Lk 2,Tanjung Gading, Kelurahan Garuntang, Bandar Lampung
+                  Jl. Balok, Lk 2, Tanjung Gading, Kelurahan Garuntang, Bandar Lampung
                 </p>
               </motion.div>
 
@@ -329,9 +329,9 @@ export default function WeddingInvitation() {
                   <br /> <span className='text-5xl font-bold text-[#ae8f7a]'>06</span>
                   <br /> <span className='text-[#ae8f7a]'>Juni 2026</span>
                   <br />
-                  08.00 WIB s/d Selesai
+                  10.00 WIB s/d Selesai
                   <br />
-                  Jl.Balik,Lk 2,Tanjung Gading, Kelurahan Garuntang, Bandar Lampung
+                  Jl. Balok, Lk 2, Tanjung Gading, Kelurahan Garuntang, Bandar Lampung
                 </p>
               </motion.div>
             </div>
@@ -339,7 +339,7 @@ export default function WeddingInvitation() {
             <div id='location' className='w-full my-10'>
               <div className='w-full mb-10'>
                 <h2 className="font-serif text-xl my-2 text-neutral-100">Lokasi</h2>
-                <p className='font-serif font-bold text-[#ae8f7a] text-4xl my-3'>Jl.Balik,Lk 2,Tanjung Gading</p>
+                <p className='font-serif font-bold text-[#ae8f7a] text-4xl my-3'>Jl. Balok, Lk 2, Tanjung Gading</p>
                 <p className='font-serif text-neutral-100 text-sm'>Kelurahan Garuntang, Bandar Lampung</p>
               </div>
               <motion.div
