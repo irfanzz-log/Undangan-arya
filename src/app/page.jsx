@@ -227,7 +227,7 @@ export default function WeddingInvitation() {
                 <div className='w-3/4 p-[0.2px] rounded-xl my-2 bg-black'>
                 </div>
               </div>
-              <p className='text-[#505050] font-serif'>Anak Ketiga dari Pasangan</p>
+              <p className='text-[#505050] font-serif'>Anak Ketiga dari tiga bersaudara</p>
               <p className="text-[#505050] font-serif">
                 Bapak Racmat Fauzi (alm) & Ibu Dra. Windiarti
               </p>
@@ -412,7 +412,7 @@ export default function WeddingInvitation() {
             viewport={{ once: true }}
             className="relative z-20 max-w-5xl mx-auto">
             <div className='relative z-20 mb-10'>
-            <p className='font-great-vibes font-bold text-[#ae8f7a] font-bold text-5xl'>Amplop Digital</p>
+            <p className='font-great-vibes font-bold text-[#ae8f7a] font-bold text-5xl'>Wedding Gift</p>
             <p className='font-serif text-neutral-100 md:text-lg text-sm mt-5'>Doa restu Anda merupakan hadiah terindah bagi kami. Namun apabila memberi adalah bentuk kasih, Anda dapat mengirimkan tanda kasih melalui amplop digital berikut.</p>
           </div>
 
