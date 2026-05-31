@@ -211,7 +211,7 @@ export default function WeddingInvitation() {
               transition={{ duration: 1 }}
               viewport={{ once: true }}
               className="transform-gpu text-center">
-              <div className="relative w-56 h-56 mx-auto mb-8">
+              <div className="relative w-56 h-56 mx-auto">
                 <img
                   src="/arya.jpeg"
                   alt="Groom"
@@ -264,7 +264,7 @@ export default function WeddingInvitation() {
                 Bapak Riswanto & Ibu Rosmanah
               </p>
               <p className='text-[#505050] font-serif pt-2 text-xs md:text-lg'>
-                Beralamat di Jl. Balok, Lingkungan 2,Garuntang, Bandar Lampung
+                Beralamat di Jl. Balok, Lingkungan 2, Garuntang, Bandar Lampung
               </p>
             </motion.div>
           </div>
@@ -339,7 +339,7 @@ export default function WeddingInvitation() {
             <div id='location' className='w-full my-10'>
               <div className='w-full mb-10'>
                 <h2 className="font-serif text-xl my-2 text-neutral-100">Lokasi</h2>
-                <p className='font-serif font-bold text-[#ae8f7a] text-4xl my-3'>Jl. Balok, Lk 2, Tanjung Gading</p>
+                <p className='font-serif font-bold text-[#ae8f7a] text-4xl my-3'>Jl. Balok, Lk 2,</p>
                 <p className='font-serif text-neutral-100 text-sm'>Kelurahan Garuntang, Bandar Lampung</p>
               </div>
               <motion.div
