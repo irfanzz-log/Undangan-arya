@@ -232,7 +232,7 @@ export default function WeddingInvitation() {
                 Bapak Racmat Fauzi (alm) & Ibu Dra. Windiarti
               </p>
               <p className='text-[#505050] font-serif pt-2 text-xs md:text-lg'>
-                Beralamat di Perum Royalindo, Desa Tanjung Agung, Kelurahan Katibung, Lampung Selatan
+                Beralamat di Perum Royalindo, Desa Tanjung Agung, Kecamatan Katibung, Lampung Selatan
               </p>
             </motion.div>
 
