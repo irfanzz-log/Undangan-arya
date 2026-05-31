@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-// import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase';
 import { Suspense } from 'react';
 import Tamu from '@/component/tamu';
 import Countdown from '@/component/countdown';
@@ -19,22 +19,22 @@ export default function WeddingInvitation() {
     audioRef.current.play();
   }
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   async function getComments() {
+    async function getComments() {
 
-  //     const { data, error } = await supabase
-  //       .from('comments')
-  //       .select('*');
+      const { data, error } = await supabase
+        .from('comments')
+        .select('*');
 
-  //     if (!error) {
-  //       setUcapan(data);
-  //     }
-  //   }
+      if (!error) {
+        setUcapan(data);
+      }
+    }
 
-  //   getComments();
+    getComments();
 
-  // }, []);
+  }, []);
 
   const [ucapan, setUcapan] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -222,17 +222,17 @@ export default function WeddingInvitation() {
                 </div>
               </div>
 
-              <h2 className="text-4xl font-great-vibes font-bold text-[#ae8f7a] mb-3">Arya Wira Radja S.Kom</h2>
+              <h2 className="text-3xl font-great-vibes font-bold text-[#ae8f7a] mb-3">Arya Wira Radja S.Kom</h2>
               <div className='w-full flex justify-center'>
                 <div className='w-3/4 p-[0.2px] rounded-xl my-2 bg-black'>
                 </div>
               </div>
               <p className='text-[#505050] font-serif'>Anak Ketiga dari Pasangan</p>
               <p className="text-[#505050] font-serif">
-                Bapak Racmat Fauzi (alm) & Ibu Dra.Windiarti
+                Bapak Racmat Fauzi (alm) & Ibu Dra. Windiarti
               </p>
               <p className='text-[#505050] font-serif pt-2 text-xs md:text-lg'>
-                Beralamat di Perum Royalindo,Desa.Tanjung Agung, Kelurahan.Katibung, Lampung Selatan
+                Beralamat di Perum Royalindo, Desa Tanjung Agung, Kelurahan Katibung, Lampung Selatan
               </p>
             </motion.div>
 
@@ -259,12 +259,12 @@ export default function WeddingInvitation() {
                 <div className='w-3/4 p-[0.2px] rounded-xl my-2 bg-black'>
                 </div>
               </div>
-              <p className='text-[#505050] font-serif'>Anak Ketiga dari Pasangan</p>
+              <p className='text-[#505050] font-serif'>Anak pertama dari dua bersaudara</p>
               <p className="text-[#505050] font-serif">
-                Bapak Riswanto & Ibu Rusmana
+                Bapak Riswanto & Ibu Rosmanah
               </p>
               <p className='text-[#505050] font-serif pt-2 text-xs md:text-lg'>
-                Beralamat di Jl.Balik,Lk 2,Tanjung Gading, Kelurahan Garuntang, Bandar Lampung
+                Beralamat di Jl. Balok, Lingkungan 2,Garuntang, Bandar Lampung
               </p>
             </motion.div>
           </div>
@@ -348,11 +348,11 @@ export default function WeddingInvitation() {
                 transition={{ duration: 1 }}
                 viewport={{ once: true }}
                 className='w-full'>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3966.618508811874!2d106.45981207499001!3d-6.181785993805685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMTAnNTQuNCJTIDEwNsKwMjcnNDQuNiJF!5e0!3m2!1sid!2sid!4v1778683668162!5m2!1sid!2sid"
-                  className='w-full h-100'
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3971.9234468971013!2d105.28799807498422!3d-5.428599994550717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNcKwMjUnNDMuMCJTIDEwNcKwMTcnMjYuMSJF!5e0!3m2!1sid!2sid!4v1780201502828!5m2!1sid!2sid" 
+                className='w-full h-100'
+                allowFullScreen="" 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade">
                 </iframe>
               </motion.div>
             </div>
@@ -453,7 +453,7 @@ export default function WeddingInvitation() {
             </div>
 
             <div className="relative flex justify-center">
-              <form className='flex w-full flex-col font-serif text-[#505050]'>
+              <form onSubmit={handleFormButton} className='flex w-full flex-col font-serif text-[#505050]'>
                 <input name='name' type="text" placeholder='Nama' className='w-full bg-white p-2 rounded-md my-1' value={form?.name} onChange={formUpdate} />
                 <textarea name="message" id="" placeholder='Beri ucapan' className='text- w-full bg-white p-2 rounded-md my-1 resize-none' value={form?.message} onChange={formUpdate}></textarea>
                 <div className='relative w-full my-1'>
@@ -490,7 +490,7 @@ export default function WeddingInvitation() {
                     <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
                   </svg><span className='mx-2'>Coments</span></p>
                 </div>
-                {/* {ucapan.map((data, idx) => {
+                {ucapan.map((data, idx) => {
                   const name = data.name.slice(0, 1);
                   return (
                     <div key={idx} className='w-full flex text-left text-black p-2 my-2'>
@@ -510,7 +510,7 @@ export default function WeddingInvitation() {
                       </div>
                     </div>
                   )
-                })} */}
+                })}
               </div>
             </div>
           </div>
